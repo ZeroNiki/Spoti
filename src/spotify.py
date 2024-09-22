@@ -44,14 +44,21 @@ def get_spotify_track(url):
     cover = cover_div.find_element(
         By.CSS_SELECTOR, "img.mMx2LUixlnN_Fu45JpFB.CmkY1Ag0tJDfnFXbGgju._EShSNaBK1wUIaZQFJJQ.Yn2Ei5QZn19gria6LjZj")
 
-    cover_url = cover.get_property('src')
+    secret = cover.get_property('srcset')
+    urls = secret.split(", ")
+    cover_url = max(urls, key=lambda x: int(
+        x.split(' ')[1][:-1])).split(' ')[0]
 
     # get album name
     print("Get album name")
     album_div = driver.find_element(
         By.CLASS_NAME, "encore-text.encore-text-body-small.w1TBi3o5CTM7zW1EB3Bm")
     album_name = album_div.find_element(By.TAG_NAME, "a")
-    album_name_text = album_name.text
+
+    if album_name is None:
+        album_name_text = None
+    else:
+        album_name_text = album_name.text
 
     driver.quit()
 

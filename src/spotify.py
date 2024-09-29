@@ -50,15 +50,14 @@ def get_spotify_track(url):
         x.split(' ')[1][:-1])).split(' ')[0]
 
     # get album name
-    print("Get album name")
-    album_div = driver.find_element(
-        By.CLASS_NAME, "encore-text.encore-text-body-small.w1TBi3o5CTM7zW1EB3Bm")
-    album_name = album_div.find_element(By.TAG_NAME, "a")
-
-    if album_name is None:
+    try:
+        print("Get album name")
+        album_div = driver.find_element(
+            By.CLASS_NAME, "encore-text.encore-text-body-small.w1TBi3o5CTM7zW1EB3Bm")
+        album_name = album_div.find_element(By.TAG_NAME, "a")
+    except Exception:
+        print("Album name not found")
         album_name_text = None
-    else:
-        album_name_text = album_name.text
 
     driver.quit()
 

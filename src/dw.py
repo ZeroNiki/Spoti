@@ -8,6 +8,7 @@ from src.config import FULL_DIR
 
 
 def download_music(link, author, track_name):
+    print("Downloading...")
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{

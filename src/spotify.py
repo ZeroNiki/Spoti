@@ -27,6 +27,7 @@ def get_spotify_track(url):
         By.CSS_SELECTOR, "h1.encore-text.encore-text-headline-large.encore-internal-color-text-base")
 
     track_name = h1.text
+    print(track_name)
 
     # get author
     print("Get author name")
@@ -37,6 +38,7 @@ def get_spotify_track(url):
 
     name = span_name.find_element(By.TAG_NAME, "a")
     author_name = name.text
+    print(author_name)
 
     # get album cover
     print("Get album cover")
@@ -48,17 +50,15 @@ def get_spotify_track(url):
     urls = secret.split(", ")
     cover_url = max(urls, key=lambda x: int(
         x.split(' ')[1][:-1])).split(' ')[0]
+    print(cover_url)
 
     # get album name
-    try:
-        print("Get album name")
-        album_div = driver.find_element(
-            By.CLASS_NAME, "encore-text.encore-text-body-small.w1TBi3o5CTM7zW1EB3Bm")
-        album_name = album_div.find_element(By.TAG_NAME, "a")
-        album_name_text = album_name.text
-    except Exception:
-        print("Album name not found")
-        album_name_text = "None"
+    print("Get album name")
+    album_div = driver.find_element(
+        By.CSS_SELECTOR, "span.encore-text.encore-text-body-small.encore-internal-color-text-subdued.w1TBi3o5CTM7zW1EB3Bm.T3DGgMGXmTVmosRbZymu")
+    album_name = album_div.find_element(By.TAG_NAME, "a")
+    album_name_text = album_name.text
+    print(album_name_text)
 
     driver.quit()
 

@@ -6,6 +6,7 @@ from src.config import YT_LINK
 
 
 def yt_search(keyword: str):
+    print("Searching...")
 
     link = f"{YT_LINK}{keyword}"
 

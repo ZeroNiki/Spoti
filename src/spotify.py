@@ -20,12 +20,12 @@ driver = webdriver.Firefox(options=firefox_options, service=service)
 def get_spotify_track(url):
     # Timeout
     print("Initialization")
-    sleep(2)
+    sleep(5)
 
     # Get track name
     print("Get track title")
     driver.get(url)
-    span = driver.find_element(By.XPATH, "/html/body/div[5]/div/div[2]/div[4]/div[1]/div[2]/div[2]/div/main/section/div[1]/div[3]/div[3]/span[2]")
+    span = driver.find_element(By.XPATH, "/html/body/div[4]/div/div[2]/div[4]/div/div[2]/div[2]/div/main/section/div[1]/div[3]/div[3]/span[2]")
 
     h1 = span.find_element(
         By.TAG_NAME, "h1")
@@ -58,7 +58,7 @@ def get_spotify_track(url):
     # get album name
     print("Get album name")
     album_div = driver.find_element(
-        By.XPATH, "/html/body/div[5]/div/div[2]/div[4]/div[1]/div[2]/div[2]/div/main/section/div[1]/div[3]/div[3]/div/span[2]")
+        By.XPATH, "/html/body/div[4]/div/div[2]/div[4]/div/div[2]/div[2]/div/main/section/div[1]/div[3]/div[3]/div/span[2]")
     album_name = album_div.find_element(By.TAG_NAME, "a")
     album_name_text = album_name.text
     print(album_name_text)

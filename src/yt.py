@@ -1,6 +1,7 @@
-from bs4 import BeautifulSoup
-import requests
 import time
+
+import requests
+from bs4 import BeautifulSoup
 
 from src.config import YT_LINK
 
@@ -9,20 +10,21 @@ def yt_search(keyword: str):
     print("Searching...")
 
     link = f"{YT_LINK}{keyword}"
+    print(link)
 
     r = requests.get(link)
-    print("Please wait 5 second")
-    time.sleep(5)
+    print("Please wait 3 second")
+    time.sleep(3)
 
     if r.status_code == 200:
         soup = BeautifulSoup(r.content, "html.parser")
 
-        get_div = soup.find("div", class_="pure-u-1 pure-u-md-1-4")
-        get_href = get_div.find("a")['href']
+        get_buttons = soup.find("div", class_="icon-buttons")
+        get_href = get_buttons.find("a")["href"]
 
-        print(f"https://www.youtube.com{get_href}")
+        print(get_href)
 
-        return f"https://www.youtube.com{get_href}"
+        return get_href
 
     else:
         print("Error")
